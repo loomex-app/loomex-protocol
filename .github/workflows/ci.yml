@@ -1,0 +1,16 @@
+name: Protocol CI
+
+on:
+  pull_request:
+  push:
+    branches: [main, stage]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - run: cargo test --locked
+      - run: cargo fmt --check
+      - run: git diff --check
