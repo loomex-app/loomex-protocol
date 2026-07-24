@@ -53,7 +53,10 @@ impl RunnerIdentity {
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum ProtocolCompatibility {
     Compatible,
-    UnsupportedVersion { received: String, expected: &'static str },
+    UnsupportedVersion {
+        received: String,
+        expected: &'static str,
+    },
 }
 
 pub fn check_protocol_compatibility(version: &str) -> ProtocolCompatibility {
