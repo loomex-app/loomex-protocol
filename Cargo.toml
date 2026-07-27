@@ -1,6 +1,6 @@
 [package]
 name = "loomex-protocol"
-version = "0.2.0"
+version = "0.1.0"
 edition = "2021"
 license = "UNLICENSED"
 repository = "https://github.com/loomex-app/loomex-protocol"
@@ -8,6 +8,6 @@ description = "Versioned Loomex runner contracts shared by desktop and plugin ru
 
 [dependencies]
 serde = { version = "1", features = ["derive"] }
+
+[dev-dependencies]
 serde_json = "1"
-serde_json_canonicalizer = "0.3.2"
-sha2 = "0.10.9"
