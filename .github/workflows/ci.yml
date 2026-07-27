@@ -11,6 +11,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
-      - run: cargo test --locked
-      - run: cargo fmt --check
-      - run: git diff --check
+        with:
+          components: clippy, rustfmt
+      - name: Formatting
+        run: cargo fmt --all -- --check
+      - name: Lints
+        run: cargo clippy --all-targets --all-features --locked -- -D warnings
+      - name: Tests and fixture drift
+        run: cargo test --all --locked
+      - name: Public API compatibility guard
+        run: cargo test --locked --test public_surface
+      - name: Offline package verification
+        run: cargo package --allow-dirty --offline
+      - name: Diff hygiene
+        run: git diff --check
